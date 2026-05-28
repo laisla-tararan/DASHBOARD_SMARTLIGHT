@@ -136,4 +136,26 @@ const ldr = document.getElementById('ldr-valor')
 const movimentoValor = document.getElementById('movimento-valor')
 
 // Configurações Botão
-const btnAlternar = document.getElementById("btn-alternar");
+const TOPICO_COMANDO = "senai/seu-nome/comando"; 
+
+// Evento do botão LIGAR LUZ
+if (btnLigar) {
+    btnLigar.addEventListener("click", () => {
+        cliente.publish(TOPICO_COMANDO, "LIGAR", { qos: 0 }, (err) => {
+            if (!err) {
+                adicionarLog("[Enviado ➡️] Comando 'LIGAR' enviado para a iluminação.", "#00ff73");
+            }
+        });
+    });
+}
+
+// Evento do botão DESLIGAR LUZ
+if (btnDesligar) {
+    btnDesligar.addEventListener("click", () => {
+        cliente.publish(TOPICO_COMANDO, "DESLIGAR", { qos: 0 }, (err) => {
+            if (!err) {
+                adicionarLog("[Enviado ➡️] Comando 'DESLIGAR' enviado para a iluminação.", "#ff4444");
+            }
+        });
+    });
+}
